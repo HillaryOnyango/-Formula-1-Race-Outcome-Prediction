@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+.env
+
+# Data and artifacts
+*.csv
+*.parquet
+*.pkl
+*.joblib
+*.json
+!config/*.json
+!artifacts/.gitkeep
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/

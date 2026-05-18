@@ -1,0 +1,14 @@
+project:
+  name: formula1-race-prediction-project
+  start_season: 2021
+  end_season: 2025
+
+paths:
+  raw_data: data/raw
+  processed_data: data/processed
+  artifacts: artifacts
+
+modeling:
+  target: is_top3
+  test_season: 2025
+  random_state: 42
