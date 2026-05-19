@@ -55,3 +55,56 @@ else:
         ["driver_id", "constructor_id", "grid", "podium_probability"]
     ]
     st.dataframe(output, use_container_width=True)
+
+# -----------------------------
+# Podium Evaluation
+# -----------------------------
+st.header("Podium Evaluation")
+
+st.write(
+    "Compare the model's predicted podium against the actual race podium."
+)
+
+evaluation_race = st.selectbox(
+    "Select race to evaluate",
+    sorted(df["race_name"].dropna().unique()),
+    key="evaluation_race",
+)
+
+eval_df = df[df["race_name"] == evaluation_race].copy()
+
+if not eval_df.empty:
+    eval_df["podium_probability"] = model.predict_proba(
+        eval_df[NUMERIC_FEATURES + CATEGORICAL_FEATURES]
+    )[:, 1]
+
+    predicted_top3 = (
+        eval_df.sort_values("podium_probability", ascending=False)
+        .head(3)
+        ["driver_id"]
+        .tolist()
+    )
+
+    actual_top3 = (
+        eval_df[eval_df["finish_position"] <= 3]
+        .sort_values("finish_position")
+        ["driver_id"]
+        .tolist()
+    )
+
+    correct = len(set(predicted_top3).intersection(actual_top3))
+    podium_accuracy = correct / 3
+
+    col1, col2, col3 = st.columns(3)
+
+    col1.metric("Correct Podium Picks", f"{correct}/3")
+    col2.metric("Podium Accuracy", f"{podium_accuracy:.2%}")
+    col3.metric("Race", evaluation_race)
+
+    comparison_df = pd.DataFrame({
+        "predicted_podium": predicted_top3,
+        "actual_podium": actual_top3
+    })
+
+    st.subheader("Predicted vs Actual Podium")
+    st.dataframe(comparison_df, use_container_width=True)
