@@ -279,6 +279,21 @@ See [`sql/schema_postgres.sql`](sql/schema_postgres.sql).
 - [ ] Build Streamlit dashboard
 - [ ] Add tests and CI workflow
 
+
+<img width="1808" height="900" alt="image" src="https://github.com/user-attachments/assets/41069277-8b0e-456c-84bd-c2d9af41f756" />
+
+<img width="1808" height="900" alt="image" src="https://github.com/user-attachments/assets/ea4672c2-cfe6-40bc-82c4-d15261319b57" />
+
+
+<img width="1808" height="900" alt="image" src="https://github.com/user-attachments/assets/f510d180-b10a-401d-a35a-6e70ff3f2f69" />
+
+
+<img width="1808" height="900" alt="image" src="https://github.com/user-attachments/assets/04d6b1cd-06c6-428d-86c2-3d1882e8d91d" />
+
+
+
+Here is the link of Live Demo of Project. Try it out: 
+https://hillaryonyango--formula-1-race-outcome--appstreamlit-app-3dhzvs.streamlit.app/
 ---
 
 ## 12. License
