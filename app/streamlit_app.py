@@ -4,6 +4,20 @@ import joblib
 import pandas as pd
 import streamlit as st
 
+NUMERIC_FEATURES = [
+    "grid",
+    "avg_finish_last_5",
+    "driver_consistency_last_5",
+    "team_points_last_5",
+    "driver_points_last_5",
+]
+
+CATEGORICAL_FEATURES = [
+    "driver_id",
+    "constructor_id",
+]
+
+
 MODEL_PATH = Path("artifacts/random_forest_is_top3.joblib")
 DATA_PATH = Path("data/processed/model_table.parquet")
 FEATURES = [
@@ -102,8 +116,9 @@ if not eval_df.empty:
     col3.metric("Race", evaluation_race)
 
     comparison_df = pd.DataFrame({
-        "predicted_podium": predicted_top3,
-        "actual_podium": actual_top3
+        "position": ["P1", "P2", "P3"],
+        "predicted_podium": predicted_top3[:3] + ["N/A"] * (3 - len(predicted_top3)),
+        "actual_podium": actual_top3[:3] + ["N/A"] * (3 - len(actual_top3)),
     })
 
     st.subheader("Predicted vs Actual Podium")
